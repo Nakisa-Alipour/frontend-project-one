@@ -1,64 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Movie Recommender</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Movie Recommender</title>
 
-  <!-- to have access to weather icons used the FontAwesome library-->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-  
-  <!-- Bootstrap CSS CDN link -->
-  <link rel="stylesheet" 
-  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" 
-  integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
-  
-  <link rel="stylesheet" href ="assets/css/style.css">
-  <!-- jQuery CDN link -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  
-  <!-- Bootstrap JS CDN link -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- to have access to weather icons used the FontAwesome library-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+    />
 
-  <!--Dayjs CDN-->
-  <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.4/dayjs.min.js"></script>
-  
-</head>
-<body class="flex column vh-100">
-    <header class = "mt-4 p-5 bg-primary text-white text-center rounded ">
-        <h1 class="title"> Movie Recommender </h1>
+    <!-- Bootstrap CSS CDN link -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
+      integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <!-- jQuery CDN link -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Bootstrap JS CDN link -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!--Dayjs CDN-->
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.4/dayjs.min.js"></script>
+  </head>
+  <body class="flex column vh-100">
+    <header class="mt-4 p-5 bg-primary text-white text-center rounded">
+      <h1 class="title">Movie Recommender</h1>
     </header>
-    
+
     <main class="d-flex flex-row justify-content-between">
-
-        <div class="col-12 col-md-3 m-4"> 
-            <div class="card m-2">
-                <h3 class="card-header title">Search for a Movie</h3>
-                <form id="movie-form" class="card-body d-flex flex-column body-feature">
-                  <input name="movie-name" id="movie-name" type="text" autofocus="true" class="form-input" placeholder="Enter a movie name"/>
-                  <button type="submit" class="btn btn-outline-info mt-4 fw-bold">Search</button>
-                  <button type="submit" class="btn btn-outline-info mt-4 fw-bold">Watch Trailer</button>
-                </form>
-            </div>
-
-            <div class="card m-2">
-                <h3 class="card-header title">Search history</h3>
-                <form id="city-form-history" class="card-body d-flex flex-column body-feature">
-                  <button type="submit" class="btn mt-4"></button>
-                </form>
-            </div>
-        
+      <div class="col-12 col-md-3 m-4">
+        <div class="card m-2">
+          <h3 class="card-header title">Search for a Movie</h3>
+          <form
+            id="movie-form"
+            class="card-body d-flex flex-column body-feature"
+          >
+            <input
+              name="movie-name"
+              id="movie-name"
+              type="text"
+              autofocus="true"
+              class="form-input"
+              placeholder="Enter a movie name"
+            />
+            <button type="submit" class="btn btn-outline-info mt-4 fw-bold">
+              Search
+            </button>
+            <button
+              type="submit"
+              class="btn btn-outline-info mt-4 fw-bold btn-watch"
+            >
+              Watch Trailer
+            </button>
+          </form>
         </div>
 
-        <div class="col-12 col-md-9 m-4">
-                <div class="card m-2 col-12 col-md-10">
-                    <h2 class="card-header title"> Movie information / trailer </h2>
-                    <div id="movie-info-container" class="list-group card-body p-2 shadow-lg"></div>
-                </div>
-
+        <div class="card m-2">
+          <h3 class="card-header title">Search history</h3>
+          <form
+            id="city-form-history"
+            class="card-body d-flex flex-column body-feature"
+          >
+            <button type="submit" class="btn mt-4"></button>
+          </form>
         </div>
+      </div>
 
+      <div class="col-12 col-md-9 m-4">
+        <div class="card m-2 col-12 col-md-10">
+          <h2 class="card-header title">Movie information / trailer</h2>
+          <div
+            id="movie-info-container"
+            class="list-group card-body p-2 shadow-lg"
+          ></div>
+          <div id="video-container" class="list-group card-body p-2 shadow-lg">
+            <div id="videos"></div>
+          </div>
+        </div>
+      </div>
     </main>
 
     <script src="./assets/js/script.js"></script>
+  </body>
+</html>
