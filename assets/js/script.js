@@ -3,8 +3,6 @@ var movieFormEl = document.querySelector('#movie-form');
 var movieNameEl = document.querySelector('#movie-name');
 var movieInfoContainerEl = document.querySelector('#movie-info-container')
 
-
-
 // Define function to retrieve and display movie information
 var formSubmitHandler = function (event){
     event.preventDefault();
@@ -37,7 +35,7 @@ var getMovieInfo = function (movieName) {
               console.log(data);
               console.log(data.Title);
 
-              // Create list items with bullet points for movie info
+              // Create list items with bullet points
               var movieNameItem = document.createElement("li");
               movieNameItem.textContent = "Movie Name: " + data.Title;
 
@@ -63,8 +61,6 @@ var getMovieInfo = function (movieName) {
             }
         })
 }
-
-
 
 
 movieFormEl.addEventListener("submit", formSubmitHandler);
