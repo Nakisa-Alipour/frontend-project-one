@@ -55,6 +55,9 @@ var getMovieInfo = function (movieName) {
 
               var movieRatingItem = document.createElement("li");
               movieRatingItem.textContent = "IMDB Rating: " + data.imdbRating;
+
+              // Create unordered list element to hold list items
+              var movieInfoList = document.createElement("ul");
               
             })
             }
