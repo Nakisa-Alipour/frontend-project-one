@@ -27,7 +27,7 @@ var getMovieInfo = function (movieName) {
     //Build URL for movie API
     var queryURL = 'http://www.omdbapi.com/?t=' + movieName + '&apikey=5cfa51ca';
 
-    /// Send GET request to weather API
+    // Send GET request to weather API
     fetch(queryURL)
     .then(function (response) {
         if (response.ok) {
@@ -54,6 +54,9 @@ var getMovieInfo = function (movieName) {
 
               var movieRatingItem = document.createElement("li");
               movieRatingItem.textContent = "IMDB Rating: " + data.imdbRating;
+
+              // Create unordered list element to hold list items
+              var movieInfoList = document.createElement("ul");
               
             })
             }
