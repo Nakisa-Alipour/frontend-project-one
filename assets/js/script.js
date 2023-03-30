@@ -79,7 +79,7 @@ function watchTrailer(event) {
   var searchQuery = movieNameEl.value.trim();
 
   if (searchQuery) {
-    searchVideo(API_KEY, searchQuery, 10);
+    searchVideo(API_KEY, searchQuery, 2);
   }
 }
 function searchVideo(key, search, max_results) {
