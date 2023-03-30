@@ -58,7 +58,14 @@ var getMovieInfo = function (movieName) {
               // Create unordered list element to hold list items
               var movieInfoList = document.createElement("ul");
 
-              //append child later in this section
+              //append created elements to the movie info container to diplay
+              movieInfoContainerEl.appendChild(movieNameItem);
+              movieInfoContainerEl.appendChild(movieYearItem);
+              movieInfoContainerEl.appendChild(movieGenreItem);
+              movieInfoContainerEl.appendChild(movieDirectorItem);
+              movieInfoContainerEl.appendChild(movieActorsItem);
+              movieInfoContainerEl.appendChild(movieRatingItem);
+
               
             })
             }
