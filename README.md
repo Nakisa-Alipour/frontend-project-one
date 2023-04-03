@@ -11,6 +11,7 @@ so that I can easily find new movies to watch.
 
 ## Acceptance Criteria
 GIVEN a movie suggestion app.
+
 WHEN I search for a movie by name and click on the "Search Info" button,
 THEN I should be able to view the year, genre, director, actors, and rating of the movie.
 
@@ -46,7 +47,7 @@ To run the application on your local machine, follow these steps:
 
 
 
-## APIs used for this application:
+## APIs used for this application
 - omdbapi
 - Youtube API
 
