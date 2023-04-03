@@ -32,17 +32,23 @@ THEN the app should be responsive and work well on both mobile and desktop devic
 
 
 ## Installation
-To run the Weather Forecast on your local machine, follow these steps:
+To run the application on your local machine, follow these steps:
 
 - Clone the repository to your local machine using git clone
 - Open the index.html file in your browser
-- Enjoy using the Weather Forecast app!
+- Enjoy using the movie recommender app!
 
 ## Link for the application
 
+
+
+## Screenshots 
+
+
+
 ## APIs used for this application:
 - omdbapi
-- googleapis
+- Youtube API
 
 
 
