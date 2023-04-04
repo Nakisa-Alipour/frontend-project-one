@@ -10,9 +10,8 @@ var API_KEY = "AIzaSyCEBhpZEX-qkQ_sqW5O_cR7MS9-Pa7kaC0";
 var movieSearchHistoryEl = document.querySelector("#movie-form-history");
 var buttonElement = document.getElementsByClassName("blah");
 console.log(buttonElement);
-var movieArray = JSON.parse(localStorage.getItem('searched-movies')) || [];
+var movieArray = JSON.parse(localStorage.getItem("searched-movies")) || [];
 var uniqueArray;
-
 
 // Define function to retrieve and display movie information
 var formSubmitHandler = function (event) {
@@ -27,14 +26,16 @@ var formSubmitHandler = function (event) {
 
     movieArray.push(movieL);
     console.log(movieArray);
-  
+
     uniqueArray = [...new Set(movieArray)];
     console.log(uniqueArray);
-    localStorage.setItem('searched-movies', JSON.stringify(uniqueArray));
-  
-    for ( i = 0; i < uniqueArray.length; i++) {
-      var getArray = JSON.parse(localStorage.getItem('searched-movies') || '[]');
-      console.log(getArray)
+    localStorage.setItem("searched-movies", JSON.stringify(uniqueArray));
+
+    for (i = 0; i < uniqueArray.length; i++) {
+      var getArray = JSON.parse(
+        localStorage.getItem("searched-movies") || "[]"
+      );
+      console.log(getArray);
       createSearchHistoryButtons(getArray[i]);
     }
 
@@ -94,7 +95,7 @@ var getMovieInfo = function (movieName) {
 ////////////////////////////////////////////
 
 function watchTrailer(event) {
-if (event) event.preventDefault();
+  if (event) event.preventDefault();
 
   // getting the value or text the user enters in the search box
   var searchQuery = movieNameEl.value.trim();
@@ -108,17 +109,16 @@ if (event) event.preventDefault();
 
   uniqueArray = [...new Set(movieArray)];
   console.log(uniqueArray);
-  localStorage.setItem('searched-movies', JSON.stringify(uniqueArray));
+  localStorage.setItem("searched-movies", JSON.stringify(uniqueArray));
 
-  for ( i = 0; i < uniqueArray.length; i++) {
-    var getArray = JSON.parse(localStorage.getItem('searched-movies') || '[]');
-    console.log(getArray)
+  for (i = 0; i < uniqueArray.length; i++) {
+    var getArray = JSON.parse(localStorage.getItem("searched-movies") || "[]");
+    console.log(getArray);
     createSearchHistoryButtons(getArray[i]);
   }
 
-
   if (searchQueryL) {
-    searchVideo(API_KEY, searchQueryL, 2);
+    searchVideo(API_KEY, searchQueryL, 20);
   }
 }
 function searchVideo(key, search, max_results) {
@@ -137,24 +137,29 @@ function searchVideo(key, search, max_results) {
 
         for (var i = 0; i < data.items.length; i++) {
           var videoEl = document.createElement("div");
-          videoEl.classList = "youtube-video";
-          videoEl.innerHTML += `
-            <iframe width="420" height="315" src="http://www.youtube.com/embed/${data.items[i].id.videoId}" frameborder="0" allowfullscreen></iframe>
+          videoEl.classList = "youtube-video col s12";
+          if (
+            data.items[i].snippet.title.includes("trailer") ||
+            data.items[i].snippet.title.includes("Trailer") ||
+            data.items[i].snippet.title.includes("TRAILER")
+          ) {
+            videoEl.innerHTML += `
+            <iframe width="320" height="215" src="http://www.youtube.com/embed/${data.items[i].id.videoId}" frameborder="0" allowfullscreen></iframe>
             `;
-          videos.append(videoEl);
-          videoContainerEl.append(videos);
+            videos.append(videoEl);
+            videoContainerEl.append(videos);
+          }
         }
       });
     }
   });
 }
 
-
-////Search History 
+////Search History
 
 //If user search is obtained, add it to an array
 //function viewSearchHistory (event) {
-//  event.preventDefault(); 
+//  event.preventDefault();
 //  var movieSearch = movieNameEl.value.trim();
 //
 //  if (movieSearch) {
@@ -164,12 +169,12 @@ function searchVideo(key, search, max_results) {
 
 //When an item is added to the array, create a button for it and attach it to the Search History Form
 var createSearchHistoryButtons = function (movie) {
-  var buttonEl = document.createElement('button');
-  buttonEl.setAttribute ('type', 'submit');
-  buttonEl.setAttribute ('class', 'btn btn-info mt-4 blah');
+  var buttonEl = document.createElement("button");
+  buttonEl.setAttribute("type", "submit");
+  buttonEl.setAttribute("class", "btn-small col s12 blue darken-2");
   buttonEl.textContent = movie;
   movieSearchHistoryEl.appendChild(buttonEl);
-  buttonEl.addEventListener('click', searchHistoryClick);
+  buttonEl.addEventListener("click", searchHistoryClick);
 };
 
 //Search History Button Click
@@ -177,18 +182,17 @@ var createSearchHistoryButtons = function (movie) {
 var searchHistoryClick = function (event) {
   console.log("hehehaha");
   event.preventDefault();
-  var movieName = event.target.textContent
+  var movieName = event.target.textContent;
   console.log(movieName);
   movieInfoContainerEl.innerHTML = "";
   getMovieInfo(movieName);
   videos.innerHTML = "";
-  searchVideo(API_KEY, movieName, 2);
+  searchVideo(API_KEY, movieName, 20);
   //movieNameEl.value = "";
-
 
   //formSubmitHandler();
   //watchTrailer();
-}
+};
 
 movieFormEl.addEventListener("submit", formSubmitHandler);
 btnWatchTrailerEl.addEventListener("click", watchTrailer);
@@ -196,10 +200,10 @@ btnWatchTrailerEl.addEventListener("click", watchTrailer);
 //  buttonElement[index].addEventListener("click", searchHistoryClick);
 //}
 
-//If history button is pressed, invoke both functions at the same time 
+//If history button is pressed, invoke both functions at the same time
 //buttonEl.addEventListener('click', formSubmitHandler);
 //buttonEl.addEventListener('click', watchTrailer)
 //
-for ( i = 0; i < movieArray.length; i++) {
+for (i = 0; i < movieArray.length; i++) {
   createSearchHistoryButtons(movieArray[i]);
 }
