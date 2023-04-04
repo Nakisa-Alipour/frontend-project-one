@@ -101,6 +101,7 @@ if (event) event.preventDefault();
   var searchQueryL = searchQuery.toLowerCase();
 
   movieNameEl.value = "";
+  videos.innerHTML = "";
 
   movieArray.push(searchQueryL);
   console.log(movieArray);
