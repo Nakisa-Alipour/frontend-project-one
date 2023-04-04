@@ -1,12 +1,18 @@
 // Define variables to store DOM elements
 var movieFormEl = document.querySelector("#movie-form");
 var movieNameEl = document.querySelector("#movie-name");
-var movieSearchHistoryEl = document.querySelector("#movie-form-history")
 var movieInfoContainerEl = document.querySelector("#movie-info-container");
+var revisitSearchEl = ("")
 var btnWatchTrailerEl = document.querySelector(".btn-watch");
 var videos = document.querySelector("#videos");
 var videoContainerEl = document.querySelector("#video-container");
 var API_KEY = "AIzaSyCEBhpZEX-qkQ_sqW5O_cR7MS9-Pa7kaC0";
+
+var movieSearchHistoryEl = document.querySelector("#movie-form-history");
+
+var movieArray = [];
+var uniqueArray;
+
 
 // Define function to retrieve and display movie information
 var formSubmitHandler = function (event) {
@@ -17,6 +23,19 @@ var formSubmitHandler = function (event) {
     // Clear search input area and movie container elements after clicking search button
     movieNameEl.value = "";
     movieInfoContainerEl.innerHTML = "";
+
+    movieArray.push(movie);
+    console.log(movieArray);
+  
+    uniqueArray = [...new Set(movieArray)];
+    console.log(uniqueArray);
+    localStorage.setItem('searched-movies', JSON.stringify(uniqueArray));
+  
+    for ( i = 0; i < uniqueArray.length; i++) {
+      var getArray = JSON.parse(localStorage.getItem('searched-movies') || '[]');
+      console.log(getArray)
+      createSearchHistoryButtons(getArray[i]);
+    }
 
     getMovieInfo(movie);
     console.log(movie);
@@ -61,7 +80,6 @@ var getMovieInfo = function (movieName) {
 
         //append created elements to the movie info container to diplay
         movieInfoContainerEl.appendChild(movieNameItem);
-        movieSearchHistoryEl.appendChild(movieNameItem);
         movieInfoContainerEl.appendChild(movieYearItem);
         movieInfoContainerEl.appendChild(movieGenreItem);
         movieInfoContainerEl.appendChild(movieDirectorItem);
@@ -111,5 +129,56 @@ function searchVideo(key, search, max_results) {
     }
   });
 }
+
+
+////Search History 
+
+//If user search is obtained, add it to an array
+function viewSearchHistory (event) {
+  event.preventDefault(); 
+  var movieSearch = movieNameEl.value.trim();
+
+  if (movieSearch) {
+    keepTab();
+  }
+}
+
+//Adding it to an array
+function keepTab() {
+  movieArray.push(movie);
+  console.log(movieArray);
+
+  uniqueArray = [...new Set(movieArray)];
+  console.log(uniqueArray);
+  localStorage.setItem('searched-movies', JSON.stringify(uniqueArray));
+
+  for ( i = 0; i < uniqueArray.length; i++) {
+    var getArray = JSON.parse(localStorage.getItem('searched-movies') || '[]');
+    console.log(getArray)
+    createSearchHistoryButtons(getArray[i]);
+  }
+}
+
+//When an item is added to the array, create a button for it and attach it to the Search History Form
+var createSearchHistoryButtons = function (movie) {
+  var buttonEl = document.createElement('button');
+  buttonEl.setAttribute ('type', 'submit');
+  buttonEl.setAttribute ('class', 'btn btn-info mt-4');
+  buttonEl.textContent = movie;
+  movieSearchHistoryEl.appendChild(buttonEl);
+};
+
+var getMovieInfo = function (movieName) {
+  //Build URL for movie API
+  var queryURL = "http://www.omdbapi.com/?t=" + movieName + "&apikey=5cfa51ca";
+
+}
+
+
+
 movieFormEl.addEventListener("submit", formSubmitHandler);
 btnWatchTrailerEl.addEventListener("click", watchTrailer);
+
+//If history button is pressed, invoke both functions at the same time 
+buttonEl.addEventListener('click', formSubmitHandler, watchTrailer);
+
