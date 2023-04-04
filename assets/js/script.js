@@ -99,9 +99,26 @@ function watchTrailer(event) {
 
   // getting the value or text the user enters in the search box
   var searchQuery = movieNameEl.value.trim();
+  var searchQueryL = searchQuery.toLowerCase();
 
-  if (searchQuery) {
-    searchVideo(API_KEY, searchQuery, 2);
+  movieNameEl.value = "";
+
+  movieArray.push(searchQueryL);
+  console.log(movieArray);
+
+  uniqueArray = [...new Set(movieArray)];
+  console.log(uniqueArray);
+  localStorage.setItem('searched-movies', JSON.stringify(uniqueArray));
+
+  for ( i = 0; i < uniqueArray.length; i++) {
+    var getArray = JSON.parse(localStorage.getItem('searched-movies') || '[]');
+    console.log(getArray)
+    createSearchHistoryButtons(getArray[i]);
+  }
+
+
+  if (searchQueryL) {
+    searchVideo(API_KEY, searchQueryL, 2);
   }
 }
 function searchVideo(key, search, max_results) {
@@ -136,15 +153,14 @@ function searchVideo(key, search, max_results) {
 ////Search History 
 
 //If user search is obtained, add it to an array
-function viewSearchHistory (event) {
-  event.preventDefault(); 
-  var movieSearch = movieNameEl.value.trim();
-
-  if (movieSearch) {
-    formSubmitHandler();
-    watchTrailer();
-  }
-}
+//function viewSearchHistory (event) {
+//  event.preventDefault(); 
+//  var movieSearch = movieNameEl.value.trim();
+//
+//  if (movieSearch) {
+//    keepTab();
+//  }
+//}
 
 //When an item is added to the array, create a button for it and attach it to the Search History Form
 var createSearchHistoryButtons = function (movie) {
@@ -172,6 +188,6 @@ movieFormEl.addEventListener("submit", formSubmitHandler);
 btnWatchTrailerEl.addEventListener("click", watchTrailer);
 
 //If history button is pressed, invoke both functions at the same time 
-buttonEl.addEventListener('click', formSubmitHandler);
-buttonEl.addEventListener('click', watchTrailer)
-
+//buttonEl.addEventListener('click', formSubmitHandler);
+//buttonEl.addEventListener('click', watchTrailer)
+//
