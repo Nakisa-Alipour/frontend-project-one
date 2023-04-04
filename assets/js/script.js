@@ -10,7 +10,7 @@ var API_KEY = "AIzaSyCEBhpZEX-qkQ_sqW5O_cR7MS9-Pa7kaC0";
 var movieSearchHistoryEl = document.querySelector("#movie-form-history");
 var buttonElement = document.getElementsByClassName("blah");
 console.log(buttonElement);
-var movieArray = [];
+var movieArray = JSON.parse(localStorage.getItem('searched-movies')) || [];
 var uniqueArray;
 
 
@@ -200,3 +200,6 @@ btnWatchTrailerEl.addEventListener("click", watchTrailer);
 //buttonEl.addEventListener('click', formSubmitHandler);
 //buttonEl.addEventListener('click', watchTrailer)
 //
+for ( i = 0; i < movieArray.length; i++) {
+  createSearchHistoryButtons(movieArray[i]);
+}
