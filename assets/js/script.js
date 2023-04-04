@@ -2,22 +2,21 @@
 var movieFormEl = document.querySelector("#movie-form");
 var movieNameEl = document.querySelector("#movie-name");
 var movieInfoContainerEl = document.querySelector("#movie-info-container");
-var revisitSearchEl = ("")
 var btnWatchTrailerEl = document.querySelector(".btn-watch");
 var videos = document.querySelector("#videos");
 var videoContainerEl = document.querySelector("#video-container");
 var API_KEY = "AIzaSyCEBhpZEX-qkQ_sqW5O_cR7MS9-Pa7kaC0";
 
 var movieSearchHistoryEl = document.querySelector("#movie-form-history");
-var buttonEl = ("#btn mt-4");
-
-var movieArray = [];
+var buttonElement = document.getElementsByClassName("blah");
+console.log(buttonElement);
+var movieArray = JSON.parse(localStorage.getItem('searched-movies')) || [];
 var uniqueArray;
 
 
 // Define function to retrieve and display movie information
 var formSubmitHandler = function (event) {
-  event.preventDefault();
+  if (event) event.preventDefault();
   var movie = movieNameEl.value.trim();
   var movieL = movie.toLowerCase();
 
@@ -95,13 +94,14 @@ var getMovieInfo = function (movieName) {
 ////////////////////////////////////////////
 
 function watchTrailer(event) {
-  event.preventDefault();
+if (event) event.preventDefault();
 
   // getting the value or text the user enters in the search box
   var searchQuery = movieNameEl.value.trim();
   var searchQueryL = searchQuery.toLowerCase();
 
   movieNameEl.value = "";
+  videos.innerHTML = "";
 
   movieArray.push(searchQueryL);
   console.log(movieArray);
@@ -166,28 +166,40 @@ function searchVideo(key, search, max_results) {
 var createSearchHistoryButtons = function (movie) {
   var buttonEl = document.createElement('button');
   buttonEl.setAttribute ('type', 'submit');
-  buttonEl.setAttribute ('class', 'btn btn-info mt-4');
+  buttonEl.setAttribute ('class', 'btn btn-info mt-4 blah');
   buttonEl.textContent = movie;
   movieSearchHistoryEl.appendChild(buttonEl);
+  buttonEl.addEventListener('click', searchHistoryClick);
 };
 
 //Search History Button Click
 
 var searchHistoryClick = function (event) {
+  console.log("hehehaha");
   event.preventDefault();
   var movieName = event.target.textContent
-  
-  movieNameEl.value = "";
+  console.log(movieName);
   movieInfoContainerEl.innerHTML = "";
+  getMovieInfo(movieName);
+  videos.innerHTML = "";
+  searchVideo(API_KEY, movieName, 2);
+  //movieNameEl.value = "";
 
-  formSubmitHandler();
-  watchTrailer();
+
+  //formSubmitHandler();
+  //watchTrailer();
 }
 
 movieFormEl.addEventListener("submit", formSubmitHandler);
 btnWatchTrailerEl.addEventListener("click", watchTrailer);
+//for (let index = 0; index < buttonElement.length; index++) {
+//  buttonElement[index].addEventListener("click", searchHistoryClick);
+//}
 
 //If history button is pressed, invoke both functions at the same time 
 //buttonEl.addEventListener('click', formSubmitHandler);
 //buttonEl.addEventListener('click', watchTrailer)
 //
+for ( i = 0; i < movieArray.length; i++) {
+  createSearchHistoryButtons(movieArray[i]);
+}
