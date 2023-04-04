@@ -1,6 +1,7 @@
 // Define variables to store DOM elements
 var movieFormEl = document.querySelector("#movie-form");
 var movieNameEl = document.querySelector("#movie-name");
+var movieSearchHistoryEl = document.querySelector("#movie-form-history")
 var movieInfoContainerEl = document.querySelector("#movie-info-container");
 var btnWatchTrailerEl = document.querySelector(".btn-watch");
 var videos = document.querySelector("#videos");
@@ -60,6 +61,7 @@ var getMovieInfo = function (movieName) {
 
         //append created elements to the movie info container to diplay
         movieInfoContainerEl.appendChild(movieNameItem);
+        movieSearchHistoryEl.appendChild(movieNameItem);
         movieInfoContainerEl.appendChild(movieYearItem);
         movieInfoContainerEl.appendChild(movieGenreItem);
         movieInfoContainerEl.appendChild(movieDirectorItem);
