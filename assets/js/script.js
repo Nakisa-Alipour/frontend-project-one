@@ -9,6 +9,7 @@ var videoContainerEl = document.querySelector("#video-container");
 var API_KEY = "AIzaSyCEBhpZEX-qkQ_sqW5O_cR7MS9-Pa7kaC0";
 
 var movieSearchHistoryEl = document.querySelector("#movie-form-history");
+var buttonEl = ("#btn mt-4");
 
 var movieArray = [];
 var uniqueArray;
@@ -18,13 +19,14 @@ var uniqueArray;
 var formSubmitHandler = function (event) {
   event.preventDefault();
   var movie = movieNameEl.value.trim();
+  var movieL = movie.toLowerCase();
 
   if (movie) {
     // Clear search input area and movie container elements after clicking search button
     movieNameEl.value = "";
     movieInfoContainerEl.innerHTML = "";
 
-    movieArray.push(movie);
+    movieArray.push(movieL);
     console.log(movieArray);
   
     uniqueArray = [...new Set(movieArray)];
@@ -139,23 +141,8 @@ function viewSearchHistory (event) {
   var movieSearch = movieNameEl.value.trim();
 
   if (movieSearch) {
-    keepTab();
-  }
-}
-
-//Adding it to an array
-function keepTab() {
-  movieArray.push(movie);
-  console.log(movieArray);
-
-  uniqueArray = [...new Set(movieArray)];
-  console.log(uniqueArray);
-  localStorage.setItem('searched-movies', JSON.stringify(uniqueArray));
-
-  for ( i = 0; i < uniqueArray.length; i++) {
-    var getArray = JSON.parse(localStorage.getItem('searched-movies') || '[]');
-    console.log(getArray)
-    createSearchHistoryButtons(getArray[i]);
+    formSubmitHandler();
+    watchTrailer();
   }
 }
 
@@ -168,17 +155,23 @@ var createSearchHistoryButtons = function (movie) {
   movieSearchHistoryEl.appendChild(buttonEl);
 };
 
-var getMovieInfo = function (movieName) {
-  //Build URL for movie API
-  var queryURL = "http://www.omdbapi.com/?t=" + movieName + "&apikey=5cfa51ca";
+//Search History Button Click
 
+var searchHistoryClick = function (event) {
+  event.preventDefault();
+  var movieName = event.target.textContent
+  
+  movieNameEl.value = "";
+  movieInfoContainerEl.innerHTML = "";
+
+  formSubmitHandler();
+  watchTrailer();
 }
-
-
 
 movieFormEl.addEventListener("submit", formSubmitHandler);
 btnWatchTrailerEl.addEventListener("click", watchTrailer);
 
 //If history button is pressed, invoke both functions at the same time 
-buttonEl.addEventListener('click', formSubmitHandler, watchTrailer);
+buttonEl.addEventListener('click', formSubmitHandler);
+buttonEl.addEventListener('click', watchTrailer)
 
