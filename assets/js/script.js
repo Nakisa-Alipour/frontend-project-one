@@ -163,7 +163,25 @@ function searchVideo(key, search, max_results) {
 //}
 
 //When an item is added to the array, create a button for it and attach it to the Search History Form
+//var createSearchHistoryButtons = function (movie) {
+//  var buttonEl = document.createElement('button');
+//  buttonEl.setAttribute ('type', 'submit');
+//  buttonEl.setAttribute ('class', 'btn btn-info mt-4 blah');
+//  buttonEl.textContent = movie;
+//  movieSearchHistoryEl.appendChild(buttonEl);
+//  buttonEl.addEventListener('click', searchHistoryClick);
+//};
+
 var createSearchHistoryButtons = function (movie) {
+
+  // Check if button already exists
+  for (var i = 0; i < buttonElement.length; i++) {
+    if (buttonElement[i].textContent === movie) {
+      // If button already exists, do not create a new one
+      return;
+    }
+  }
+
   var buttonEl = document.createElement('button');
   buttonEl.setAttribute ('type', 'submit');
   buttonEl.setAttribute ('class', 'btn btn-info mt-4 blah');
