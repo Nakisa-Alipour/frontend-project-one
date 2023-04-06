@@ -5,7 +5,7 @@ var movieInfoContainerEl = document.querySelector("#movie-info-container");
 var btnWatchTrailerEl = document.querySelector(".btn-watch");
 var videos = document.querySelector("#videos");
 var videoContainerEl = document.querySelector("#video-container");
-var API_KEY = "AIzaSyCEBhpZEX-qkQ_sqW5O_cR7MS9-Pa7kaC0";
+var API_KEY = "AIzaSyCo8CM04wQGlnvixKhuwAVIpMrMmviTQCA";
 
 var movieSearchHistoryEl = document.querySelector("#movie-form-history");
 var buttonElement = document.getElementsByClassName("blah");
