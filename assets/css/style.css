@@ -1,0 +1,41 @@
+:root {
+  --primary-color: #0d47a1;
+  --secondary-color: #1976d2;
+}
+.title {
+  color: #fff;
+}
+
+#movie-name {
+  border-bottom: 1px solid var(--primary-color);
+}
+
+#movie-form {
+  padding: 0;
+}
+
+.card-title {
+  margin-top: 0;
+}
+
+.btn-small {
+  margin-bottom: 0.8em;
+  border: 1px solid var(--primary-color);
+  height: 37.4px;
+}
+
+.btn-small:hover {
+  background: none !important;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+div#videos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.youtube-video {
+  margin: 20px;
+}
