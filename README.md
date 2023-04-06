@@ -41,10 +41,11 @@ To run the application on your local machine, follow these steps:
 
 ## Link for the application
 
+https://nakisa-alipour.github.io/movie-recommender/
 
+## Screenshot
 
-## Screenshots 
-
+![Movie recommender](https://user-images.githubusercontent.com/124220654/230312088-715b3cfc-f238-4926-8263-55a58d4a3a24.jpg)
 
 
 ## APIs used for this application
