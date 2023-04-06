@@ -6,42 +6,46 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Movie Recommender</title>
 
-    <!-- to have access to weather icons used the FontAwesome library-->
-    <link
+   <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
     />
 
-    <!-- Bootstrap CSS CDN link -->
+    <!-- Materialise CSS CDN link -->
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
-      integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
-      crossorigin="anonymous"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
     />
+    
 
     <link rel="stylesheet" href="assets/css/style.css" />
     <!-- jQuery CDN link -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <!-- Bootstrap JS CDN link -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- Materialise JS CDN link -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-    <!--Dayjs CDN-->
-    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.4/dayjs.min.js"></script>
+   
+  
   </head>
-  <body class="flex column vh-100">
-    <header class="mt-4 p-5 bg-primary text-white text-center rounded">
-      <h1 class="title">Movie Recommender</h1>
-    </header>
+  <body class="blue darken-2">
+    <div class="row">
+      <header class="col s12">
+        <h1 class="title center-align">
+          <i class="fa fa-film" aria-hidden="true"></i>&nbsp; Movie Recommender
+        </h1>
+      </header>
+    </div>
 
-    <main class="d-flex flex-row justify-content-between">
-      <div class="col-12 col-md-3 m-4">
-        <div class="card m-2">
-          <h3 class="card-header title">Search for a Movie</h3>
+    <main>
+    <div class ="row">
+      <div class="col s12 m4 l3">
+        <div class="card z-depth-4">
+          <div class="card-content">
+          <h3 class="card-title">Search for a Movie</h3>
           <form
             id="movie-form"
-            class="card-body d-flex flex-column body-feature"
+            class="card-action"
           >
             <input
               name="movie-name"
@@ -51,40 +55,49 @@
               class="form-input"
               placeholder="Enter a movie name"
             />
-            <button type="submit" class="btn btn-outline-info mt-4 fw-bold">
+            <button type="submit" class="btn-small blue darken-4"><i class="fa fa-search" aria-hidden="true"></i>
               Search
             </button>
             <button
               type="submit"
-              class="btn btn-outline-info mt-4 fw-bold btn-watch"
+              class="btn-small btn-watch blue darken-4"
             >
-              Watch Trailer
+            <i class="fa fa-film" aria-hidden="true"></i> Watch Trailer
             </button>
           </form>
         </div>
+        </div>
 
-        <div class="card m-2">
-          <h3 class="card-header title">Search history</h3>
-          <form
+        <div class="card z-depth-4">
+          <div class="card-content">
+          <h3 class="card-title">Search history</h3>
+          <div class="row ">
+          <div
             id="movie-form-history"
-            class="card-body d-flex flex-column body-feature"
+            class="card-action"
           >
+        </div>
+        </div>
             <!--<button type="submit" class="btn mt-4"></button>-->
           </form>
         </div>
       </div>
+      </div>
 
-      <div class="col-12 col-md-9 m-4">
-        <div class="card m-2 col-12 col-md-10">
-          <h2 class="card-header title">Movie information / trailer</h2>
+      <div class="col s12 m8 l9">
+        <div class="card z-depth-4">
+          <div class="card-content">
+          <h2 class="card-title">Movie Information / Trailer</h2>
           <div
             id="movie-info-container"
-            class="list-group card-body p-2 shadow-lg"
+            class="list-group card-action"
           ></div>
-          <div id="video-container" class="list-group card-body p-2 shadow-lg">
-            <div id="videos"></div>
+          <div id="video-container" class="list-group card-action">
+            <div id="videos" class="row"></div>
           </div>
         </div>
+      </div>
+      </div>
       </div>
     </main>
 
