@@ -132,7 +132,7 @@ function searchVideo(key, search, max_results) {
             data.items[i].snippet.title.includes("TRAILER")
           ) {
             videoEl.innerHTML += `
-            <iframe width="320" height="215" src="http://www.youtube.com/embed/${data.items[i].id.videoId}" frameborder="0" allowfullscreen></iframe>
+            <iframe width="320" height="215" src="https://www.youtube.com/embed/${data.items[i].id.videoId}" frameborder="0" allowfullscreen></iframe>
             `;
             videos.append(videoEl);
             videoContainerEl.append(videos);
