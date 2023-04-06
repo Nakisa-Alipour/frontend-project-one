@@ -28,7 +28,11 @@ var formSubmitHandler = function (event) {
   if (movie) {
     // Clear search input area and movie container elements after clicking search button
     movieInfoContainerEl.innerHTML = "";
-    videoContainerEl.innerHTML = "";
+
+    //videoContainerEl.innerHTML = "";
+
+ 
+
 
     if (!movieArray.includes(movie)) {
       movieArray.push(movieL);
@@ -37,7 +41,9 @@ var formSubmitHandler = function (event) {
 
     createSearchHistoryButton();
     getMovieInfo(movie);
-    searchVideo(API_KEY, movie, 20);
+
+    //searchVideo(API_KEY, movie, 20);
+
   } else {
     return;
   }
